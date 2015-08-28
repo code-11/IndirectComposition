@@ -2,6 +2,7 @@ package com.example.brendan.learningandroid2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -68,5 +69,20 @@ public class MainActivity extends AppCompatActivity {
             currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
             currPaint=(ImageButton)view;
         }
+    }
+    public void saveClick(View view){
+        Log.d("", "Save Clicked");
+    }
+    public void floatClick(View view){
+        Log.d("", "Float Clicked");
+    }
+    public void newClick(View view){
+        Log.d("", "New Clicked");
+    }
+    public void inClick(View view){
+        Log.d("","In Clicked");
+    }
+    public void outClick(View view){
+        Log.d("","Out Clicked");
     }
 }

@@ -3,11 +3,12 @@ package com.example.brendan.learningandroid2;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 
 /**
  * Created by brendan on 8/26/2015.
  */
-public class FloatBrush {
+public class PaintFloat {
     private float accelX;
     private float accelY;
 
@@ -22,7 +23,7 @@ public class FloatBrush {
     private Paint color;
     private Path path;
 
-    public FloatBrush(float posX,float posY,float mass,Paint color){
+    public PaintFloat(float posX,float posY,float mass,Paint color){
         this.accelX=0;
         this.accelY=0;
         this.velX=0;
@@ -129,6 +130,10 @@ public class FloatBrush {
 
         posX+=velX;
         posY+=velY;
+    }
+
+    public boolean stopAtBounds(float h,float w){
+        return (posX>w) || (posY>h) || (posX<0) || (posY<0);
     }
 
 }

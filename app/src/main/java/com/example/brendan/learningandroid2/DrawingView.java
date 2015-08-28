@@ -14,9 +14,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class DrawingView extends View {
 
     //drawing path
@@ -32,7 +29,7 @@ public class DrawingView extends View {
 
     private Thread thread;
 
-    private FloatBrush floatBrush;
+    private PaintFloat paintFloat;
 
     private VectorField theField;
 
@@ -50,12 +47,14 @@ public class DrawingView extends View {
         theField = new VectorField(w,h,200);
         theField.draw(drawCanvas, drawPaint);
 
+        Log.d("","Size is "+ Integer.toString(w)+","+Integer.toString(h));
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-        canvas.drawPath(drawPath, drawPaint);
+//        canvas.drawPath(drawPath, drawPaint);
     }
 
     @Override
@@ -66,7 +65,8 @@ public class DrawingView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
-                floatBrush= new FloatBrush(touchX,touchY,1,drawPaint);
+                paintFloat = new PaintFloat(touchX,touchY,1,drawPaint);
+                Log.d("","Touch at "+touchX+","+touchY);
 
 //                VectorNode nearest=theField.findClosest(touchX, touchY);
 //                float nodeX=nearest.getXBase();
@@ -99,19 +99,25 @@ public class DrawingView extends View {
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         canvasPaint = new Paint(Paint.DITHER_FLAG);
+
         new Thread(new Runnable() {
             public void run() {
                 while (true) {
-                    if (floatBrush != null) {
-                        VectorNode nearest = theField.findClosest(floatBrush.getPosX(), floatBrush.getPosY());
-                        floatBrush.calcMovement(nearest);
-                        floatBrush.draw(drawCanvas);
+                    if (paintFloat != null) {
+
+                        VectorNode nearest = theField.findClosest(paintFloat.getPosX(), paintFloat.getPosY());
+                        paintFloat.calcMovement(nearest);
+                        paintFloat.draw(drawCanvas);
 
                         //Perhaps a bit of black magic to update screen
                         findViewById(R.id.drawing).postInvalidate();
+
+                        if (paintFloat.stopAtBounds(theField.getWidth(),theField.getHeight())){
+                            paintFloat=null;
+                        }
                     }
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(50);
                     } catch (Exception e) {
                         Log.d("", e.toString());
                     }

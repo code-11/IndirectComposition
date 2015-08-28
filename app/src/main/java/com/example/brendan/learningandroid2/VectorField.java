@@ -10,9 +10,31 @@ import java.util.ArrayList;
  * Created by brendan on 8/23/2015.
  */
 public class VectorField {
+    private int width;
+    private int height;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+
     private ArrayList<VectorNode> allVectors = new ArrayList<VectorNode>();
 
-    public VectorField(float width,float height,float density){
+    public VectorField(int width,int height,float density){
+        this.width=width;
+        this.height=height;
         for(float i=0;i<width;i+=density){
             for(float j=0;j<height;j+=density){
                 allVectors.add(new VectorNode(i,j,1,1));

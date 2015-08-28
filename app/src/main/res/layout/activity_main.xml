@@ -15,18 +15,35 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="Select Brush"
+            android:onClick="floatClick"
             android:src="@drawable/brush" />
+        <ImageButton
+            android:id="@+id/in_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="Select Inward Magnet Brush"
+            android:onClick="inClick"
+            android:src="@drawable/in" />
+        <ImageButton
+            android:id="@+id/out_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="Select Outward Magnet Brush"
+            android:onClick="outClick"
+            android:src="@drawable/out" />
         <ImageButton
             android:id="@+id/new_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="New Picture"
+            android:onClick="newClick"
             android:src="@drawable/new_pic" />
         <ImageButton
             android:id="@+id/save_btn"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:contentDescription="Save Picture"
+            android:onClick="saveClick"
             android:src="@drawable/save" />
     </LinearLayout>
     <com.example.brendan.learningandroid2.DrawingView
