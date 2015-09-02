@@ -133,7 +133,7 @@ public class PaintFloat {
     }
 
     public boolean stopAtBounds(float h,float w){
-        return (posX>w) || (posY>h) || (posX<0) || (posY<0);
+        return (posX>w) || (posY>h+300) || (posX<0) || (posY<0);
     }
 
 }

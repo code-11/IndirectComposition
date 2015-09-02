@@ -44,7 +44,7 @@ public class DrawingView extends View {
         canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
 
-        theField = new VectorField(w,h,200);
+        theField = new VectorField(w,h,100);
         theField.draw(drawCanvas, drawPaint);
 
         Log.d("","Size is "+ Integer.toString(w)+","+Integer.toString(h));
