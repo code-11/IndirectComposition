@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.Log;
 
+import java.sql.Time;
+
 /**
  * Created by brendan on 8/26/2015.
  */
@@ -19,6 +21,8 @@ public class PaintFloat {
     private float posY;
 
     private float mass;
+
+    private long endTime;
 
     private Paint color;
     private Path path;
@@ -37,6 +41,8 @@ public class PaintFloat {
         this.path= new Path();
         this.path.moveTo(posX, posY);
 
+        long now= System.currentTimeMillis();
+        this.endTime=now+10000;
     }
 
     public void draw(Canvas drawCanvas){
@@ -133,7 +139,7 @@ public class PaintFloat {
     }
 
     public boolean stopAtBounds(float h,float w){
-        return (posX>w) || (posY>h+300) || (posX<0) || (posY<0);
+        return (posX>w) || (posY>h+300) || (posX<0) || (posY<0) || (System.currentTimeMillis()>endTime);
     }
 
 }
