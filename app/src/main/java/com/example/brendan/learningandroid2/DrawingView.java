@@ -29,9 +29,11 @@ public class DrawingView extends View {
 
     private Thread thread;
 
-    private PaintFloat paintFloat;
+//    private PaintFloat paintFloat;
 
     private VectorField theField;
+
+    private Brush theBrush;
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -54,7 +56,6 @@ public class DrawingView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-//        canvas.drawPath(drawPath, drawPaint);
     }
 
     @Override
@@ -65,15 +66,8 @@ public class DrawingView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
-                paintFloat = new PaintFloat(touchX,touchY,1,drawPaint);
-                Log.d("","Touch at "+touchX+","+touchY);
+                theBrush.onTouch(touchX, touchY, 1, drawPaint);
 
-//                VectorNode nearest=theField.findClosest(touchX, touchY);
-//                float nodeX=nearest.getXBase();
-//                float nodeY=nearest.getYBase();
-
-//                drawPath.moveTo(nodeX, nodeY);
-//                drawPath.lineTo(nodeX+1, nodeY+1);
                 break;
 //            case MotionEvent.ACTION_MOVE:
 //                drawPath.lineTo(touchX, touchY);
@@ -100,22 +94,15 @@ public class DrawingView extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
+        theBrush=new FloatBrush();
+
         new Thread(new Runnable() {
             public void run() {
                 while (true) {
-                    if (paintFloat != null) {
+                    theBrush.update(theField,drawCanvas);
 
-                        VectorNode nearest = theField.findClosest(paintFloat.getPosX(), paintFloat.getPosY());
-                        paintFloat.calcMovement(nearest);
-                        paintFloat.draw(drawCanvas);
-
-                        //Perhaps a bit of black magic to update screen
-                        findViewById(R.id.drawing).postInvalidate();
-
-                        if (paintFloat.stopAtBounds(theField.getWidth(),theField.getHeight())){
-                            paintFloat=null;
-                        }
-                    }
+                    //Perhaps a bit of black magic to update screen
+                    findViewById(R.id.drawing).postInvalidate();
                     try {
                         Thread.sleep(50);
                     } catch (Exception e) {
