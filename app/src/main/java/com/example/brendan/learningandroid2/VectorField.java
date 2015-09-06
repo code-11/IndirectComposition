@@ -42,6 +42,20 @@ public class VectorField {
         }
     }
 
+    private double euclidian (float x1,float y1,float x2,float y2 ){
+        return Math.sqrt(Math.pow(y2-y1,2)+Math.pow(x2-x1,2));
+    }
+
+    public ArrayList findAllWithin(float xPos, float yPos, float radius){
+        ArrayList within= new ArrayList();
+        for (VectorNode vector : allVectors){
+            if (euclidian(vector.getXBase(),vector.getYBase(),xPos,yPos)<radius){
+                within.add(vector);
+            }
+        }
+        return within;
+    }
+
     public VectorNode findClosest(float xPos,float yPos){
         if (allVectors.isEmpty()) {
             return null;

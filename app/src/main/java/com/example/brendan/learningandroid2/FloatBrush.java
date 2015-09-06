@@ -2,6 +2,7 @@ package com.example.brendan.learningandroid2;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 /**
  * Created by brendan on 9/4/2015.
@@ -24,7 +25,7 @@ public class FloatBrush extends Brush{
     }
 
     @Override
-    public void onTouch(float x, float y, float strength, Paint color) {
+    public void onTouch(VectorField theField, Canvas drawCanvas, Paint drawPaint,float x, float y, float strength, Paint color) {
         paintFloat = new PaintFloat(x,y,strength,color);
     }
 }

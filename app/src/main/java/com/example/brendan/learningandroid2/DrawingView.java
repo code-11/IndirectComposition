@@ -40,6 +40,10 @@ public class DrawingView extends View {
         setupDrawing();
     }
 
+    public void setBrush(Brush newBrush){
+        theBrush=newBrush;
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -63,11 +67,12 @@ public class DrawingView extends View {
         float touchX = event.getX();
         float touchY = event.getY();
 
+
+        theBrush.onMotionEvent();
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
-                theBrush.onTouch(touchX, touchY, 1, drawPaint);
-
+                theBrush.onTouch(theField, drawCanvas,drawPaint, touchX, touchY, 1, drawPaint);
                 break;
 //            case MotionEvent.ACTION_MOVE:
 //                drawPath.lineTo(touchX, touchY);

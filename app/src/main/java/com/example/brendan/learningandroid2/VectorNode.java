@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.Color;
 
 /**
  * Created by brendan on 8/23/2015.
@@ -33,6 +34,12 @@ public class VectorNode {
         return this.xMag;
     }
     public float getYMag() {return this.yMag;}
+    public void setXMag(float newMagX){
+        this.xMag=newMagX;
+    }
+    public void setYMag(float newMagY){
+        this.yMag=newMagY;
+    }
 
     public float[] getUnit(){
         float norm=xMag+yMag;
@@ -51,6 +58,12 @@ public class VectorNode {
 
 //        drawCanvas.drawLine((xbase+(xMag*10)),(ybase+(yMag*10)), (xbase + (xMag * 10)) + (yMag * 10), (ybase + (yMag * 10)) + (xMag * 10), drawPaint);
         //drawCanvas.drawCircle(this.xbase, this.ybase, 1, drawPaint);
+    }
+
+    public void unDraw(Canvas drawCanvas) {
+        Paint white = new Paint();
+        white.setColor(color.GREEN);
+        draw(drawCanvas,white);
     }
 
     private void drawTriangle(Canvas drawCanvas, Paint drawPaint){

@@ -74,12 +74,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d("", "Save Clicked");
     }
     public void floatClick(View view){
+        drawView.setBrush(new FloatBrush());
         Log.d("", "Float Clicked");
     }
     public void newClick(View view){
         Log.d("", "New Clicked");
     }
     public void inClick(View view){
+        drawView.setBrush(new InBrush());
+
         Log.d("","In Clicked");
     }
     public void outClick(View view){
