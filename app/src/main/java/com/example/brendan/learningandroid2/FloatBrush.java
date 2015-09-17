@@ -25,7 +25,7 @@ public class FloatBrush extends Brush{
     }
 
     @Override
-    public void onTouch(VectorField theField, Canvas drawCanvas, Paint drawPaint,float x, float y, float strength, Paint color) {
+    public void onTouch(VectorField theField, Canvas vectorCanvas, Canvas drawCanvas, Paint drawPaint,float x, float y, float strength, Paint color) {
         paintFloat = new PaintFloat(x,y,strength,color);
     }
 }

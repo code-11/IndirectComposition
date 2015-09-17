@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Color;
+import android.util.Log;
+
 
 /**
  * Created by brendan on 8/23/2015.
@@ -15,6 +17,8 @@ public class VectorNode {
     public float xMag;
     public float yMag;
     public float magnitude;
+    public float drawMajorAxis;
+    public float drawMinorAxis;
 
     public VectorNode(float xbase,float ybase, float xMag, float yMag){
         this.xbase=xbase;
@@ -22,6 +26,9 @@ public class VectorNode {
 
         this.xMag=xMag;
         this.yMag=yMag;
+
+        this.drawMajorAxis=25;
+        this.drawMinorAxis=20;
     }
 
     public float getXBase(){
@@ -46,24 +53,37 @@ public class VectorNode {
         return new float[] {xMag/norm,yMag/norm};
     }
 
-    public void draw(Canvas drawCanvas,Paint drawPaint){
-        drawPaint.setStrokeWidth(1);
+    public void drawHelp(Canvas vectorCanvas, Paint aPaint){
         //drawTriangle(drawCanvas, drawPaint);
-        drawCanvas.drawLine(xbase, ybase, xbase + (xMag * 25), ybase + (yMag * 25), drawPaint);
+        vectorCanvas.drawLine(xbase, ybase, xbase + (xMag * drawMajorAxis), ybase + (yMag * drawMajorAxis), aPaint);
 
         float[] unit=getUnit();
         float newXMag=unit[0];
         float newYMag=unit[1];
-        drawCanvas.drawLine(xbase, ybase, xbase - (newYMag * 20), ybase + (newXMag * 20), drawPaint);
+        vectorCanvas.drawLine(xbase, ybase, xbase - (newYMag * drawMinorAxis), ybase + (newXMag * drawMinorAxis), aPaint);
+    }
+
+    public void draw(Canvas vectorCanvas){
+        Paint black = new Paint();
+        black.setColor(Color.BLACK);
+        black.setStrokeWidth(1);
+        drawHelp(vectorCanvas,black);
 
 //        drawCanvas.drawLine((xbase+(xMag*10)),(ybase+(yMag*10)), (xbase + (xMag * 10)) + (yMag * 10), (ybase + (yMag * 10)) + (xMag * 10), drawPaint);
         //drawCanvas.drawCircle(this.xbase, this.ybase, 1, drawPaint);
     }
 
-    public void unDraw(Canvas drawCanvas) {
+    public void unDraw(Canvas vectorCanvas) {
         Paint white = new Paint();
-        white.setColor(color.GREEN);
-        draw(drawCanvas,white);
+        white.setColor(Color.WHITE);
+        white.setStrokeWidth(4);
+//        drawHelp(vectorCanvas,white);
+
+        white.setStyle(Paint.Style.FILL);
+        float aproxMag=+Math.abs(xMag)+ Math.abs(yMag);
+        vectorCanvas.drawCircle(xbase, ybase, aproxMag*drawMajorAxis, white);
+//        Log.d("","This is running: ");
+////        draw(vectorCanvas,white);
     }
 
     private void drawTriangle(Canvas drawCanvas, Paint drawPaint){

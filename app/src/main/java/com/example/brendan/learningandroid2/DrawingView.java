@@ -24,8 +24,10 @@ public class DrawingView extends View {
     private int paintColor = 0xFF660000;
     //canvas
     private Canvas drawCanvas;
+    private Canvas vectorCanvas;
     //canvas bitmap
     private Bitmap canvasBitmap;
+    private Bitmap vectorBitmap;
 
     private Thread thread;
 
@@ -50,8 +52,11 @@ public class DrawingView extends View {
         canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
 
+        vectorBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        vectorCanvas = new Canvas(vectorBitmap);
+
         theField = new VectorField(w,h,100);
-        theField.draw(drawCanvas, drawPaint);
+        theField.draw(vectorCanvas, drawPaint);
 
         Log.d("","Size is "+ Integer.toString(w)+","+Integer.toString(h));
 
@@ -59,7 +64,9 @@ public class DrawingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.drawBitmap(vectorBitmap, 0, 0, canvasPaint);
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+
     }
 
     @Override
@@ -72,7 +79,7 @@ public class DrawingView extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                theBrush.onTouch(theField, drawCanvas,drawPaint, touchX, touchY, 1, drawPaint);
+                theBrush.onTouch(theField, vectorCanvas, drawCanvas,drawPaint, touchX, touchY, 1, drawPaint);
                 break;
 //            case MotionEvent.ACTION_MOVE:
 //                drawPath.lineTo(touchX, touchY);

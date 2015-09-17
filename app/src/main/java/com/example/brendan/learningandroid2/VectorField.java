@@ -81,9 +81,9 @@ public class VectorField {
 
     }
 
-    public void draw (Canvas drawCanvas,Paint drawPaint){
+    public void draw (Canvas vectorCanvas,Paint drawPaint){
         for (VectorNode vector : allVectors){
-            vector.draw(drawCanvas,drawPaint);
+            vector.draw(vectorCanvas);
         }
     }
 }
