@@ -19,6 +19,7 @@ public class InBrush extends Brush{
             vector.setYMag(-1);
             vector.unDraw(vectorCanvas);
             vector.draw(vectorCanvas);
+
         }
 
 //        theField.draw(vectorCanvas, drawPaint);

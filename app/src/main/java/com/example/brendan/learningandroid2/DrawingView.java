@@ -64,8 +64,9 @@ public class DrawingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(vectorBitmap, 0, 0, canvasPaint);
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+        canvas.drawBitmap(vectorBitmap, 0, 0, canvasPaint);
+
 
     }
 

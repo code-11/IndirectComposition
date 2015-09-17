@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Xfermode;
 import android.graphics.Color;
 import android.util.Log;
 
@@ -49,7 +52,7 @@ public class VectorNode {
     }
 
     public float[] getUnit(){
-        float norm=xMag+yMag;
+        float norm=Math.abs(xMag)+Math.abs(yMag);
         return new float[] {xMag/norm,yMag/norm};
     }
 
@@ -69,13 +72,17 @@ public class VectorNode {
         black.setStrokeWidth(1);
         drawHelp(vectorCanvas,black);
 
+
 //        drawCanvas.drawLine((xbase+(xMag*10)),(ybase+(yMag*10)), (xbase + (xMag * 10)) + (yMag * 10), (ybase + (yMag * 10)) + (xMag * 10), drawPaint);
         //drawCanvas.drawCircle(this.xbase, this.ybase, 1, drawPaint);
     }
 
     public void unDraw(Canvas vectorCanvas) {
+
         Paint white = new Paint();
-        white.setColor(Color.WHITE);
+        white.setStyle(Paint.Style.STROKE);
+        white.setXfermode(new PorterDuffXfermode(
+                PorterDuff.Mode.CLEAR));
         white.setStrokeWidth(4);
 //        drawHelp(vectorCanvas,white);
 
