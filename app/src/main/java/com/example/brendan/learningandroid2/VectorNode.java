@@ -33,6 +33,14 @@ public class VectorNode {
         this.drawMajorAxis=25;
         this.drawMinorAxis=20;
     }
+    public void makeFromPoints(float xbase,float ybase, float xOther,float yOther ){
+        this.xbase=xbase;
+        this.ybase=ybase;
+
+        this.xMag=xOther-xbase;
+        this.yMag=yOther-ybase;
+    }
+
 
     public float getXBase(){
         return this.xbase;
@@ -51,9 +59,33 @@ public class VectorNode {
         this.yMag=newMagY;
     }
 
+    public double getEucMag(){
+        return Math.sqrt(Math.pow(yMag,2)+Math.pow(yMag,2));
+    }
+
     public float[] getUnit(){
         float norm=Math.abs(xMag)+Math.abs(yMag);
         return new float[] {xMag/norm,yMag/norm};
+    }
+
+    public void setTowards(float x, float y){
+        setTowardsHelp(x,y,1);
+    }
+    public void setAway(float x,float y){
+        setTowardsHelp(x,y,-1);
+    }
+
+    private void setTowardsHelp(float x, float y,float scaleFactor){
+        double oldMag=getEucMag()*scaleFactor;
+        VectorNode asIfSet= new VectorNode(0,0,0,0);
+        asIfSet.makeFromPoints(this.xbase,this.ybase,x,y);
+
+        float [] setDirUnit=asIfSet.getUnit();
+        float newXMag= (float) (setDirUnit[0]*oldMag);
+        float newYMag= (float) (setDirUnit[1]*oldMag);
+
+        this.xMag=newXMag;
+        this.yMag=newYMag;
     }
 
     public void drawHelp(Canvas vectorCanvas, Paint aPaint){

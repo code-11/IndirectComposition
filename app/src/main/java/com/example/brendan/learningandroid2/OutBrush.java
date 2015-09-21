@@ -6,9 +6,9 @@ import android.util.Log;
 import java.util.ArrayList;
 
 /**
- * Created by brendan on 9/6/2015.
+ * Created by brendan on 9/21/2015.
  */
-public class InBrush extends Brush{
+public class OutBrush extends Brush {
 
     @Override
     public void onTouch(VectorField theField, Canvas vectorCanvas, Canvas paintCanvas, Paint drawPaint, float x, float y, float strength, Paint color) {
@@ -16,7 +16,7 @@ public class InBrush extends Brush{
 //        Log.d("", Integer.toString(within.size()));
         for(VectorNode vector : within){
             vector.unDraw(vectorCanvas);
-            vector.setTowards(x,y);
+            vector.setAway(x,y);
             vector.draw(vectorCanvas);
 
         }

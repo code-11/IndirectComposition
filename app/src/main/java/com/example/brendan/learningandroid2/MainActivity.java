@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void inClick(View view){
         drawView.setBrush(new InBrush());
-
         Log.d("","In Clicked");
     }
     public void outClick(View view){
+        drawView.setBrush(new OutBrush());
         Log.d("","Out Clicked");
     }
 }
