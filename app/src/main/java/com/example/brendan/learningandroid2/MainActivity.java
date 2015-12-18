@@ -89,12 +89,11 @@ public class MainActivity extends AppCompatActivity {
 
     public String handleIO(){
         final EditText txtUrl = new EditText(this);
-        txtUrl.setHint("Test");
+        txtUrl.setHint("Untitled");
         String toReturn="";
 
         new AlertDialog.Builder(this)
                 .setTitle("Input Title")
-                .setMessage("Name your picture!")
                 .setView(txtUrl)
                 .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
