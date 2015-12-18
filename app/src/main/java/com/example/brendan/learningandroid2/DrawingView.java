@@ -5,6 +5,7 @@ package com.example.brendan.learningandroid2;
  */
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,10 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.graphics.PorterDuff;
 import android.view.Display;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class DrawingView extends View {
 
@@ -50,6 +55,10 @@ public class DrawingView extends View {
 
     public void setBrush(Brush newBrush){
         theBrush=newBrush;
+    }
+
+    public Bitmap getCanvasBitmap(){
+        return canvasBitmap;
     }
 
     @Override
