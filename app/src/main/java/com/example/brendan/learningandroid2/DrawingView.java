@@ -13,6 +13,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.view.Display;
 
 public class DrawingView extends View {
 
@@ -28,6 +30,10 @@ public class DrawingView extends View {
     //canvas bitmap
     private Bitmap canvasBitmap;
     private Bitmap vectorBitmap;
+
+    private int viewWidth;
+    private int viewHeight;
+
 
     private Thread thread;
 
@@ -57,6 +63,9 @@ public class DrawingView extends View {
 
         theField = new VectorField(w,h,100);
         theField.draw(vectorCanvas, drawPaint);
+
+        viewWidth = w;
+        viewHeight = h;
 
         Log.d("","Size is "+ Integer.toString(w)+","+Integer.toString(h));
 
@@ -127,7 +136,13 @@ public class DrawingView extends View {
     }
 
 
-
+    public void startNew(){
+        drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+        vectorCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+        theField = new VectorField(viewWidth,viewHeight,100);
+        theField.draw(vectorCanvas, drawPaint);
+        invalidate();
+    }
 
 
     public void setColor(String newColor){
