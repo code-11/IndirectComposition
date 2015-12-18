@@ -17,7 +17,13 @@
             android:contentDescription="Select Brush"
             android:onClick="floatClick"
             android:src="@drawable/brush" />
-
+        <!--<ImageButton-->
+            <!--android:id="@+id/set_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:contentDescription="Set Brush"-->
+            <!--android:onClick="setClick"-->
+            <!--android:src="@drawable/set" />-->
         <ImageButton
             android:id="@+id/in_btn"
             android:layout_width="wrap_content"

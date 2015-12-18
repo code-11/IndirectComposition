@@ -88,6 +88,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void setClick(View view){
+        final SeekArc arc = new SeekArc(this);
+
+
+        new AlertDialog.Builder(this)
+                .setTitle("Select Brush Size")
+                .setView(arc)
+                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        int val = (int) arc.getTouchAngle();
+//                        drawView.setSize(val);
+                        Toast savedToast = Toast.makeText(getApplicationContext(),
+                                Integer.toString(val), Toast.LENGTH_SHORT);
+                        savedToast.show();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                })
+                .show();
+    }
+
+
     public void sizeClick(View view){
         final SeekBar bar = new SeekBar(this);
 
