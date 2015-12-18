@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-//    public boolean onTouchEvent(MotionEvent event) {
+    //    public boolean onTouchEvent(MotionEvent event) {
 //        // MotionEvent object holds X-Y values
 //        if(event.getAction() == MotionEvent.ACTION_DOWN) {
 //            String text = "You click at x = " + event.getX() + " and y = " + event.getY();
@@ -85,6 +86,29 @@ public class MainActivity extends AppCompatActivity {
             currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
             currPaint=(ImageButton)view;
         }
+    }
+
+    public void sizeClick(View view){
+        final SeekBar bar = new SeekBar(this);
+
+
+        new AlertDialog.Builder(this)
+                .setTitle("Select Brush Size")
+                .setView(bar)
+                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        int val = bar.getProgress();
+                        drawView.setSize(val);
+                        Toast savedToast = Toast.makeText(getApplicationContext(),
+                                "Size Changed", Toast.LENGTH_SHORT);
+                        savedToast.show();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                })
+                .show();
     }
 
     public String handleIO(){
@@ -119,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String save(){
-            String imgSaved = MediaStore.Images.Media.insertImage(
+        String imgSaved = MediaStore.Images.Media.insertImage(
                 getContentResolver(), drawView.getCanvasBitmap(),"test.png", "drawing");
-            return imgSaved;
+        return imgSaved;
     }
     public String save2(String path){
         try {
