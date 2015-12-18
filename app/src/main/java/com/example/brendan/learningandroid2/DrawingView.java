@@ -161,6 +161,7 @@ public class DrawingView extends View {
     }
 
     public void setSize(int newSize){
+        drawPaint.setStrokeWidth(newSize);
         theBrush.setBrushSize(newSize);
     }
 }

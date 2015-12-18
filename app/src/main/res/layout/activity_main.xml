@@ -17,6 +17,7 @@
             android:contentDescription="Select Brush"
             android:onClick="floatClick"
             android:src="@drawable/brush" />
+
         <ImageButton
             android:id="@+id/in_btn"
             android:layout_width="wrap_content"
@@ -31,6 +32,13 @@
             android:contentDescription="Select Outward Magnet Brush"
             android:onClick="outClick"
             android:src="@drawable/out" />
+        <ImageButton
+            android:id="@+id/size_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="Select Brush"
+            android:onClick="sizeClick"
+            android:src="@drawable/size" />
         <ImageButton
             android:id="@+id/new_btn"
             android:layout_width="wrap_content"
