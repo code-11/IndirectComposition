@@ -31,7 +31,7 @@ public class VectorNode {
         this.yMag=yMag;
 
         this.drawMajorAxis=25;
-        this.drawMinorAxis=20;
+        this.drawMinorAxis=10;
     }
     public void makeFromPoints(float xbase,float ybase, float xOther,float yOther ){
         this.xbase=xbase;

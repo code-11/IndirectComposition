@@ -16,6 +16,7 @@ public class OutBrush extends Brush {
 //        Log.d("", Integer.toString(within.size()));
         for(VectorNode vector : within){
             vector.unDraw(vectorCanvas);
+            vector.unDraw(vectorCanvas);
             vector.setAway(x,y);
             vector.draw(vectorCanvas);
 
