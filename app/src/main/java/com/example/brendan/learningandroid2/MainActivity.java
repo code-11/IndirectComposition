@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         int val = (int) arc.getTouchAngle();
-//                        drawView.setSize(val);
+                        drawView.setBrush(new SetBrush(val));
                         Toast savedToast = Toast.makeText(getApplicationContext(),
                                 Integer.toString(val), Toast.LENGTH_SHORT);
                         savedToast.show();
