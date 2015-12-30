@@ -64,7 +64,7 @@ public class SetBrush extends Brush {
 
     @Override
     public void onTouch(VectorField theField, Canvas vectorCanvas, Canvas paintCanvas, Paint drawPaint, float x, float y, float strength, Paint color) {
-        ArrayList<VectorNode> within = theField.findAllWithin(x,y,200);
+        ArrayList<VectorNode> within = theField.findAllWithin(x,y,getBrushSize());
 //        Log.d("", Integer.toString(within.size()));
         for(VectorNode vector : within){
             vector.unDraw(vectorCanvas);
