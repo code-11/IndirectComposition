@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         int val = bar.getProgress();
                         drawView.setSize(val);
+                        Log.d("Size Bar",""+val);
                         Toast savedToast = Toast.makeText(getApplicationContext(),
                                 "Size Changed", Toast.LENGTH_SHORT);
                         savedToast.show();

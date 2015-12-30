@@ -21,7 +21,7 @@ public class SetBrush extends Brush {
         newY=x;
         newX=y;
         dealWithJump(angle);
-        Log.d("Angle Info:", "Angle: "+angle+" X:"+newX+" Y: "+newY);
+//        Log.d("Angle Info:", "Angle: "+angle+" X:"+newX+" Y: "+newY);
     }
     private double angleToY(double angle){
         double tangle=Math.tan(angle);
@@ -50,9 +50,16 @@ public class SetBrush extends Brush {
         if (angle<90 || angle>270){
             if (newY>0){
                 newY*=-1;
-                Log.d("Angle Corrected",""+newY);
+//                Log.d("Angle Corrected",""+newY);
             }
         }
+    }
+
+    @Override
+    public void onBrushResize(int newSize) {
+        float minBrushSize= 50;
+        float maxBrushSize= 900;
+        setBrushSize((int) lerp(minBrushSize, maxBrushSize, newSize / 100.0f));
     }
 
     @Override

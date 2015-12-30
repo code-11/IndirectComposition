@@ -11,6 +11,15 @@ import java.util.ArrayList;
 public class OutBrush extends Brush {
 
     @Override
+    public void onBrushResize(int newSize) {
+        float minBrushSize= 100*1.14f;
+        float maxBrushSize= 900;
+        setBrushSize((int) lerp(minBrushSize, maxBrushSize, newSize / 100.0f));
+
+        Log.d("Brush","Brush size is now: "+getBrushSize());
+    }
+
+    @Override
     public void onTouch(VectorField theField, Canvas vectorCanvas, Canvas paintCanvas, Paint drawPaint, float x, float y, float strength, Paint color) {
         ArrayList<VectorNode> within = theField.findAllWithin(x,y,200);
 //        Log.d("", Integer.toString(within.size()));
